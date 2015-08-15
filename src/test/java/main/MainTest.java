@@ -2,18 +2,15 @@ package main;
 
 import org.junit.Test;
 
-import sk.builders.mas.agents.TimeAgent;
-import sk.builders.mas.core.Core;
-import sk.builders.mas.core.Message;
+import sk.builders.core.Core;
+import sk.builders.core.ObjectConfig;
+import sk.builders.game.bo.Map;
+import sk.builders.game.exceptions.WrongMapSizeException;
 
 public class MainTest {
 
     @Test
-    public void agentTest() {
-        Core c = new Core();
-        TimeAgent timeAgent = new TimeAgent();
-        Message m1 = new Message(timeAgent, timeAgent, 0, 1000);
-        c.sendMessage(m1);
-        c.start();
+    public void coreStartTest() throws WrongMapSizeException {
+        Core core = new Core(ObjectConfig.class);
     }
 }
