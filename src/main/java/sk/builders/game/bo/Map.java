@@ -20,6 +20,7 @@ public class Map {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 map[i][j] = new Terrain();
+                map[i][j].setPosition(new Position(i, j));
             }
         }
     }
@@ -36,6 +37,7 @@ public class Map {
     }
 
     public void setBuilding(Building building, Position position) {
+        building.setPosition(position);
         map[position.getX()][position.getY()] = building;
     }
 

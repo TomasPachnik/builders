@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import sk.builders.core.annotations.Autowired;
+import sk.builders.game.bo.Map;
 import sk.builders.mas.exceptions.BackInTimeException;
 
-public class Core {
+public class MasCore {
+
+    @Autowired
+    private Map map;
 
     private long simulationTime;
     private List<Message> messageCalendar;
 
-    public Core() {
+    public MasCore() {
         this.simulationTime = 0;
         this.messageCalendar = new ArrayList<Message>();
     }
@@ -30,10 +35,13 @@ public class Core {
             run();
         } catch (BackInTimeException e) {
             System.err.println(e.getMessage());
+        } catch (InterruptedException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private void run() throws BackInTimeException {
+    private void run() throws BackInTimeException, InterruptedException {
         while (!messageCalendar.isEmpty()) {
             Message message = messageCalendar.get(0);
             if (message.getExecuteTime() < simulationTime) {
@@ -43,6 +51,10 @@ public class Core {
             messageCalendar.remove(0);
             message.getRecipient().perform(this, message);
         }
+    }
+
+    public Map getMap() {
+        return map;
     }
 
 }

@@ -2,6 +2,6 @@ package sk.builders.mas.core;
 
 public abstract class Agent {
 
-    public abstract void perform(Core core, Message message);
+    public abstract void perform(MasCore core, Message message) throws InterruptedException;
 
 }

@@ -1,17 +1,24 @@
 package sk.builders.mas.agents;
 
+import sk.builders.game.bo.Position;
 import sk.builders.mas.core.Agent;
-import sk.builders.mas.core.Core;
+import sk.builders.mas.core.MasCore;
 import sk.builders.mas.core.Message;
 
 public class TimeAgent extends Agent {
 
+    private int sleep;
+
+    public TimeAgent(int sleep) {
+        this.sleep = sleep;
+    }
+
     @Override
-    public void perform(Core core, Message message) {
+    public void perform(MasCore core, Message message) throws InterruptedException {
         message.setSendTime(core.getSimulationTime());
-        message.setExecuteTime(core.getSimulationTime() + 1000);
+        message.setExecuteTime(core.getSimulationTime() + sleep);
         core.sendMessage(message);
-        System.out.println(core.getSimulationTime());
+        Thread.sleep(sleep);
     }
 
 }
