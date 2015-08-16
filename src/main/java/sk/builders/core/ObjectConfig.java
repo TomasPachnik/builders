@@ -1,5 +1,12 @@
 package sk.builders.core;
 
+import java.awt.image.BufferedImage;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import sk.builders.core.annotations.Bean;
 import sk.builders.core.annotations.Config;
 import sk.builders.game.bl.impl.GameApiImpl;
@@ -9,6 +16,7 @@ import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.DisplayMap;
 import sk.builders.gui.MainScreen;
 import sk.builders.mas.core.MasCore;
+import static sk.builders.utils.Utils.MAIN_RESOURCE_PATH;
 
 @Config
 public class ObjectConfig {
@@ -36,6 +44,11 @@ public class ObjectConfig {
     @Bean
     public DisplayMap displayMap() {
         return new DisplayMap();
+    }
+
+    @Bean
+    public BufferedImage castle() throws IOException {
+        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "castle.jpg"));
     }
 
 }
