@@ -14,6 +14,7 @@ import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
 import sk.builders.game.bo.Terrain;
 import sk.builders.game.interfaces.GameApi;
+import sk.builders.utils.Utils;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,7 +41,7 @@ public class MainScreen {
 
         JButton build = new JButton("build");
         JButton destroy = new JButton("destroy");
-        displayMap.setPreferredSize(new Dimension(640-32, 640-32));
+        displayMap.setPreferredSize(new Dimension(640 - 32, 640 - 32));
         panel.add(build);
         panel.add(destroy);
         panel.add(displayMap);
@@ -70,10 +71,9 @@ public class MainScreen {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                double x = ((double) e.getX() / ((double) displayMap.getWidth() / (double) map.getMap()[0].length));
-                double y = ((double) e.getY() / ((double) displayMap.getHeight() / (double) map.getMap()[1].length));
 
-                Position position = new Position((int) x, (int) y);
+                Position position = Utils.calculateReverse(new Position(e.getX(), e.getY()));
+                System.out.println(new Position(e.getX(), e.getY()));
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     Building building = new Castle();
                     System.out.println(gameApi.build(building, position).isResult());
@@ -82,7 +82,7 @@ public class MainScreen {
                 }
                 displayMap.repaint();
             }
-
+            
             @Override
             public void mouseEntered(MouseEvent e) {
                 // TODO Auto-generated method stub

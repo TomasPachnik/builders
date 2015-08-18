@@ -38,7 +38,7 @@ public class DisplayMap extends JComponent {
 
         // prelezie polom mapy a vykresli budovy
         for (int i = 0; i < map.getMap()[0].length; i++) {
-            for (int j = 0; j < map.getMap()[0].length; j++) {
+            for (int j = 0; j < map.getMap()[1].length; j++) {
                 try {
                     drawBuilding(map.getBuilding(new Position(i, j)), g);
                 } catch (IOException e) {
