@@ -48,7 +48,12 @@ public class ObjectConfig {
 
     @Bean
     public BufferedImage castle() throws IOException {
-        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "castle.jpg"));
+        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "castle.png"));
+    }
+    
+    @Bean
+    public BufferedImage grass() throws IOException {
+        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "grass.png"));
     }
 
 }

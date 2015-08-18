@@ -8,9 +8,9 @@ import sk.builders.game.enums.Type;
  * @author Tomas
  *
  */
-public class Base extends Building {
+public class Castle extends Building {
 
-    public Base() {
+    public Castle() {
         super(Type.BUILDING);
     }
 

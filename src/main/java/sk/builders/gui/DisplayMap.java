@@ -4,18 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
+import sk.builders.gui.bo.Castle;
+import sk.builders.gui.bo.Grass;
+import sk.builders.utils.Utils;
 
 public class DisplayMap extends JComponent {
+
+    private int length = 64;
 
     @Autowired
     private Map map;
@@ -23,11 +26,14 @@ public class DisplayMap extends JComponent {
     @Autowired
     private BufferedImage castle;
 
+    @Autowired
+    private BufferedImage grass;
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         // najskor vykresli cely panel na zeleno
-        g.setColor(Color.GREEN);
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         // prelezie polom mapy a vykresli budovy
@@ -43,25 +49,15 @@ public class DisplayMap extends JComponent {
     }
 
     private void drawBuilding(Building b, Graphics g) throws IOException {
-
-        double x1 = ((double) b.getPosition().getX() / (double) map.getMap()[0].length) * getWidth();
-        int x2 = getWidth() / map.getMap()[0].length;
-        double y1 = ((double) b.getPosition().getY() / (double) map.getMap()[1].length) * getHeight();
-        int y2 = getHeight() / map.getMap()[1].length;
-
-        BufferedImage resizedImage = new BufferedImage(x2, y2, castle.getType());
-        Graphics2D graphic = resizedImage.createGraphics();
-        graphic.drawImage(castle, 0, 0, x2, y2, null);
-        graphic.dispose();
-
+        Position p = Utils.calculatePosition(b.getPosition());
         switch (b.getType()) {
         case TERRAIN:
-            g.setColor(Color.GREEN);
-            g.fillRect((int) x1, (int) y1, x2, y2);
+            Grass grassObj = new Grass(p.getX(), p.getY(), grass);
+            grassObj.draw(g);
             break;
         case BUILDING:
-            g.setColor(Color.GRAY);
-            g.drawImage(resizedImage, (int) x1, (int) y1, null);
+            Castle castleObj = new Castle(p.getX(), p.getY(), castle);
+            castleObj.draw(g);
             break;
         }
     }

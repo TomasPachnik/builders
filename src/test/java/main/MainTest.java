@@ -11,4 +11,5 @@ public class MainTest {
     public void main() {
         new CoreImpl(ObjectConfig.class);
     }
+
 }

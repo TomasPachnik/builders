@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import sk.builders.core.annotations.Autowired;
-import sk.builders.game.bo.Base;
+import sk.builders.game.bo.Castle;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
@@ -40,7 +40,7 @@ public class MainScreen {
 
         JButton build = new JButton("build");
         JButton destroy = new JButton("destroy");
-        displayMap.setPreferredSize(new Dimension(620, 400));
+        displayMap.setPreferredSize(new Dimension(640-32, 640-32));
         panel.add(build);
         panel.add(destroy);
         panel.add(displayMap);
@@ -49,7 +49,7 @@ public class MainScreen {
         build.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Base base = new Base();
+                Castle base = new Castle();
                 Position position = new Position(0, 0);
                 System.out.println(gameApi.build(base, position).isResult());
                 displayMap.repaint();
@@ -75,7 +75,7 @@ public class MainScreen {
 
                 Position position = new Position((int) x, (int) y);
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    Building building = new Base();
+                    Building building = new Castle();
                     System.out.println(gameApi.build(building, position).isResult());
                 } else if (SwingUtilities.isRightMouseButton(e)) {
                     System.out.println(gameApi.destroy(position).isResult());
