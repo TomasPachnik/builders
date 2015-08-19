@@ -10,27 +10,27 @@ import sk.builders.game.enums.Type;
  */
 public abstract class Building {
 
-    private Type type;
-    private Position position;
+	private Type type;
+	private Position position;
 
-    public Building(Type type) {
-        this.type = type;
-    }
+	public Building(Type type, Position position) {
+		this.type = type;
+	}
 
-    public Type getType() {
-        return type;
-    }
+	public Type getType() {
+		return type;
+	}
 
-    public void setType(Type type) {
-        this.type = type;
-    }
+	public void setType(Type type) {
+		this.type = type;
+	}
 
-    public Position getPosition() {
-        return position;
-    }
+	public Position getPosition() {
+		return position;
+	}
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
+	public void setPosition(Position position) {
+		this.position = position;
+	}
 
 }
