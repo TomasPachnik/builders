@@ -1,6 +1,6 @@
 package sk.builders.game.bo;
 
-import sk.builders.game.exceptions.WrongMapSizeException;
+import static sk.builders.utils.Utils.MAP_LENGTH;
 
 /**
  * jednoducha mapa pre development
@@ -12,20 +12,14 @@ public class Map {
 
     private Building[][] map;
 
-    public Map(int x, int y) throws WrongMapSizeException {
-        if (x < 1 || y < 1) {
-            throw new WrongMapSizeException();
-        }
-        this.map = new Building[x][y];
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
+    public Map() {
+        this.map = new Building[MAP_LENGTH][MAP_LENGTH];
+        for (int i = 0; i < MAP_LENGTH; i++) {
+            for (int j = 0; j < MAP_LENGTH; j++) {
                 map[i][j] = new Terrain(new Position(i, j));
                 map[i][j].setPosition(new Position(i, j));
             }
         }
-    }
-
-    public Map() throws WrongMapSizeException {
     }
 
     public Building[][] getMap() {

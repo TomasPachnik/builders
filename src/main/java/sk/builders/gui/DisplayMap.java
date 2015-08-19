@@ -29,6 +29,9 @@ public class DisplayMap extends JComponent {
     @Autowired
     private BufferedImage grass;
 
+    @Autowired
+    private BufferedImage water;
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

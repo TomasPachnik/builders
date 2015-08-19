@@ -28,6 +28,10 @@ public class MainScreen {
     private GameApi gameApi;
     @Autowired
     private Map map;
+    @Autowired
+    private MouseMotionEvent mouseMotionEvent;
+    @Autowired
+    private MousePositionRightPressed mousePositionRightPressed;
 
     public void draw() {
         JFrame guiFrame = new JFrame();
@@ -40,6 +44,7 @@ public class MainScreen {
 
         JButton destroy = new JButton("destroy");
         displayMap.setPreferredSize(new Dimension(640 - 32, 640 - 32));
+        displayMap.addMouseMotionListener(mouseMotionEvent);
         panel.add(destroy);
         panel.add(displayMap);
         guiFrame.add(panel);
@@ -54,7 +59,6 @@ public class MainScreen {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 Position clicked = null;
                 for (int i = 0; i < map.getMap()[0].length; i++) {
                     for (int j = 0; j < map.getMap()[1].length; j++) {
@@ -89,8 +93,7 @@ public class MainScreen {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-
+                mousePositionRightPressed.setPosition(new Position(e.getX(), e.getY()));
             }
 
             @Override
