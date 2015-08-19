@@ -38,12 +38,12 @@ public class MainScreen {
 
         guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         guiFrame.setTitle("Builders");
-        guiFrame.setSize(640, 480);
+        guiFrame.setSize(1280, 700);
         guiFrame.setLocationRelativeTo(null);
         final JPanel panel = new JPanel();
 
         JButton destroy = new JButton("destroy");
-        displayMap.setPreferredSize(new Dimension(640 - 32, 640 - 32));
+        displayMap.setPreferredSize(new Dimension(1280 - 32, 700 - 32));
         displayMap.addMouseMotionListener(mouseMotionEvent);
         panel.add(destroy);
         panel.add(displayMap);

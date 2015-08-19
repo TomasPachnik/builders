@@ -7,7 +7,7 @@ import sk.builders.game.bo.Position;
 
 public class Utils {
 
-    public static final int MAP_LENGTH = 30;
+    public static final int MAP_LENGTH = 50;
     public static int OFFSET_X = 300;
     public static int OFFSET_Y = 0;
     public static final String MAIN_RESOURCE_PATH = "src/main/resources/";

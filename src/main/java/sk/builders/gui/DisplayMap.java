@@ -61,7 +61,7 @@ public class DisplayMap extends JComponent {
             grassObj.draw(g);
             break;
         case BUILDING:
-            Castle castleObj = new Castle(p.getX(), p.getY(), castle);
+            Castle castleObj = new Castle(p.getX(), p.getY(), water);
             castleObj.draw(g);
             break;
         }
