@@ -62,7 +62,8 @@ public class MainScreen {
                 Position clicked = null;
                 for (int i = 0; i < map.getMap()[0].length; i++) {
                     for (int j = 0; j < map.getMap()[1].length; j++) {
-                        if (Utils.containsPoint(map.getBuilding(new Position(i, j)).getPolygon(), new Position(e.getX(), e.getY()))) {
+                        if (Utils.containsPoint(map.getBuilding(new Position(i, j)).getPolygon(), new Position(e.getX() - Utils.OFFSET_X, e.getY()
+                                - Utils.OFFSET_Y))) {
                             clicked = map.getBuilding(new Position(i, j)).getPosition();
                             break;
                         }

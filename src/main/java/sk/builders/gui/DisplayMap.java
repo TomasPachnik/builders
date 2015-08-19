@@ -53,6 +53,8 @@ public class DisplayMap extends JComponent {
 
     private void drawBuilding(Building b, Graphics g) throws IOException {
         Position p = Utils.calculatePosition(b.getPosition());
+        p.setX(p.getX() + Utils.OFFSET_X);
+        p.setY(p.getY() + Utils.OFFSET_Y);
         switch (b.getType()) {
         case TERRAIN:
             Grass grassObj = new Grass(p.getX(), p.getY(), grass);

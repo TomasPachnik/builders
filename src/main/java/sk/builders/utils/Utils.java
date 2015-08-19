@@ -17,7 +17,7 @@ public class Utils {
     public static Position calculatePosition(Position position) {
         int x = (position.getX() - position.getY()) * HALF_LENGTH;
         int y = (position.getX() + position.getY()) * HALF_LENGTH / 2;
-        return new Position(x + OFFSET_X, y + OFFSET_Y);
+        return new Position(x, y);
     }
 
     public static Polygon initPolygon(Position p) {
