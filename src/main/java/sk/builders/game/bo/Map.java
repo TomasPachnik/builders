@@ -19,7 +19,7 @@ public class Map {
         this.map = new Building[x][y];
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                map[i][j] = new Terrain();
+                map[i][j] = new Terrain(new Position(i, j));
                 map[i][j].setPosition(new Position(i, j));
             }
         }

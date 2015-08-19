@@ -32,7 +32,7 @@ public class GameApiImpl implements GameApi {
     public Result destroy(Position position) {
         Building foundBuilding = map.getBuilding(position);
         if (foundBuilding.getType() == Type.BUILDING) {
-            map.setBuilding(new Terrain(), position);
+            map.setBuilding(new Terrain(position), position);
             return new EverythingOk();
         } else {
             return new NoBuilding();

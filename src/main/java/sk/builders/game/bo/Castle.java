@@ -12,30 +12,18 @@ import sk.builders.utils.Utils;
  *
  */
 public class Castle extends Building {
-	private Polygon polygon;
 
-	public Castle(Position position) {
-		super(Type.BUILDING, position);
-		System.out.println(super.getPosition());
-		this.setPolygon(Utils.initPolygon(position));
-	}
+    public Castle(Position position) {
+        super(Type.BUILDING, position);
+    }
 
-	private Warehouse warehouse;
+    private Warehouse warehouse;
 
-	public Warehouse getWarehouse() {
-		return warehouse;
-	}
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
 
-	public void setWarehouse(Warehouse warehouse) {
-		this.warehouse = warehouse;
-	}
-
-	public Polygon getPolygon() {
-		return polygon;
-	}
-
-	public void setPolygon(Polygon polygon) {
-		this.polygon = polygon;
-	}
-
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
 }
