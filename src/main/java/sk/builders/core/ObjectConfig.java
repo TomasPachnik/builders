@@ -15,8 +15,9 @@ import sk.builders.game.bo.Map;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.DisplayMap;
 import sk.builders.gui.MainScreen;
-import sk.builders.gui.MouseMotionEvent;
-import sk.builders.gui.MousePositionRightPressed;
+import sk.builders.gui.listeners.ActionListeners;
+import sk.builders.gui.listeners.MouseMotionEvent;
+import sk.builders.gui.listeners.MousePositionRightPressed;
 import sk.builders.mas.core.MasCore;
 
 @Config
@@ -56,7 +57,12 @@ public class ObjectConfig {
     public MouseMotionEvent mouseMotionEvent() {
         return new MouseMotionEvent();
     }
-
+    
+    @Bean
+    public ActionListeners actionListeners() {
+        return new ActionListeners();
+    }
+    
     @Bean
     public BufferedImage castle() throws IOException {
         return ImageIO.read(new File(MAIN_RESOURCE_PATH + "castle.png"));

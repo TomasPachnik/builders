@@ -1,4 +1,4 @@
-package sk.builders.gui;
+package sk.builders.gui.listeners;
 
 import sk.builders.game.bo.Position;
 import sk.builders.utils.Utils;

@@ -66,4 +66,5 @@ public class DisplayMap extends JComponent {
             break;
         }
     }
+    
 }
