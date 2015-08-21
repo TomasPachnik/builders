@@ -2,6 +2,7 @@ package sk.builders.gui.listeners;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.SwingUtilities;
 
@@ -23,9 +24,13 @@ public class ActionListeners {
     @Autowired
     private GameApi gameApi;
     @Autowired
+    private MouseMotionEvent mouseMotionEvent;
+    @Autowired
     private MousePositionRightPressed mousePositionRightPressed;
 
     public void initListeners() {
+        displayMap.addMouseMotionListener(mouseMotionEvent);
+
         displayMap.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -41,7 +46,8 @@ public class ActionListeners {
                 }
 
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    Building building = new Castle(clicked);
+                    Building building = null;
+                    building = new Castle(clicked);
                     System.out.println(gameApi.build(building, clicked).isResult());
                     displayMap.repaint();
                 } else if (SwingUtilities.isRightMouseButton(e)) {

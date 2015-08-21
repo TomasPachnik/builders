@@ -2,8 +2,14 @@ package sk.builders.utils;
 
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import sk.builders.game.bo.Position;
+import sk.builders.game.enums.Type;
 
 public class Utils {
 
@@ -27,16 +33,21 @@ public class Utils {
         poly.addPoint(position.getX() + HALF_LENGTH, position.getY() + 64);
         poly.addPoint(position.getX() + LENGTH, position.getY() + 48);
         poly.addPoint(position.getX() + HALF_LENGTH, position.getY() + 32);
-        /*
-         * System.out.println(p); System.out.println(position); System.out.println(position.getX() + ":" + position.getY() + 48);
-         * System.out.println(position.getX() + HALF_LENGTH + ":" + position.getY() + 64); System.out.println(position.getX() + LENGTH + ":" + position.getY() +
-         * 48); System.out.println(position.getX() + HALF_LENGTH + ":" + position.getY() + 32);
-         */
         return poly;
     }
 
     public static boolean containsPoint(Polygon polygon, Position position) {
         return polygon.contains(new Point(position.getX(), position.getY()));
+    }
+
+    public static BufferedImage getImage(Type building) {
+        try {
+            return ImageIO.read(new File(MAIN_RESOURCE_PATH + building.toString().toLowerCase() + ".png"));
+        } catch (IOException e) {
+            System.err.println(e + " - " + MAIN_RESOURCE_PATH + building.toString().toLowerCase() + ".png");
+        }
+        return null;
+
     }
 
 }

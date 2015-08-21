@@ -2,6 +2,8 @@ package sk.builders.game.bo;
 
 import static sk.builders.utils.Utils.MAP_LENGTH;
 
+import java.io.IOException;
+
 /**
  * jednoducha mapa pre development
  * 
@@ -12,7 +14,7 @@ public class Map {
 
     private Building[][] map;
 
-    public Map() {
+    public Map() throws IOException {
         this.map = new Building[MAP_LENGTH][MAP_LENGTH];
         for (int i = 0; i < MAP_LENGTH; i++) {
             for (int j = 0; j < MAP_LENGTH; j++) {

@@ -24,7 +24,7 @@ import sk.builders.mas.core.MasCore;
 public class ObjectConfig {
 
     @Bean
-    public Map map() {
+    public Map map() throws IOException {
         return new Map();
     }
 
@@ -61,21 +61,6 @@ public class ObjectConfig {
     @Bean
     public ActionListeners actionListeners() {
         return new ActionListeners();
-    }
-    
-    @Bean
-    public BufferedImage castle() throws IOException {
-        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "castle.png"));
-    }
-
-    @Bean
-    public BufferedImage grass() throws IOException {
-        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "grass.png"));
-    }
-
-    @Bean
-    public BufferedImage water() throws IOException {
-        return ImageIO.read(new File(MAIN_RESOURCE_PATH + "water.png"));
     }
 
 }

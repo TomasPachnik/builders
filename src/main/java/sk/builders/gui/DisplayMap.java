@@ -12,25 +12,15 @@ import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
+import sk.builders.game.enums.Type;
 import sk.builders.gui.bo.Castle;
 import sk.builders.gui.bo.Grass;
 import sk.builders.utils.Utils;
 
 public class DisplayMap extends JComponent {
 
-    private int length = 64;
-
     @Autowired
     private Map map;
-
-    @Autowired
-    private BufferedImage castle;
-
-    @Autowired
-    private BufferedImage grass;
-
-    @Autowired
-    private BufferedImage water;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -57,14 +47,14 @@ public class DisplayMap extends JComponent {
         p.setY(p.getY() + Utils.OFFSET_Y);
         switch (b.getType()) {
         case TERRAIN:
-            Grass grassObj = new Grass(p.getX(), p.getY(), grass);
+            Grass grassObj = new Grass(p.getX(), p.getY(), Utils.getImage(Type.TERRAIN));
             grassObj.draw(g);
             break;
         case BUILDING:
-            Castle castleObj = new Castle(p.getX(), p.getY(), water);
+            Castle castleObj = new Castle(p.getX(), p.getY(), Utils.getImage(Type.WATER));
             castleObj.draw(g);
             break;
         }
     }
-    
+
 }

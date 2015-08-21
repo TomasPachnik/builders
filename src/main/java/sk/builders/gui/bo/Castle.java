@@ -1,13 +1,7 @@
 package sk.builders.gui.bo;
 
 import java.awt.Graphics;
-import java.awt.Polygon;
 import java.awt.image.BufferedImage;
-
-import javax.swing.JComponent;
-
-import sk.builders.game.bo.Position;
-import sk.builders.utils.Utils;
 
 public class Castle {
 

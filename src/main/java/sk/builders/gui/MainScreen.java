@@ -6,14 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import sk.builders.core.annotations.Autowired;
 import sk.builders.gui.listeners.ActionListeners;
-import sk.builders.gui.listeners.MouseMotionEvent;
 
 public class MainScreen {
 
     @Autowired
     private DisplayMap displayMap;
-    @Autowired
-    private MouseMotionEvent mouseMotionEvent;
     @Autowired
     private ActionListeners actionListeners;
 
@@ -28,7 +25,6 @@ public class MainScreen {
 
         JButton destroy = new JButton("destroy");
         displayMap.setPreferredSize(new Dimension(1280 - 32, 700 - 32));
-        displayMap.addMouseMotionListener(mouseMotionEvent);
         panel.add(destroy);
         panel.add(displayMap);
         guiFrame.add(panel);
