@@ -18,14 +18,14 @@ public class GameApiImpl implements GameApi {
     private Map map;
 
     @Override
-    public Result build(Building building, Position position) {
-        Building foundBuilding = map.getBuilding(position);
-        if (foundBuilding.getType() == Type.TERRAIN) {
-            map.setBuilding(building, position);
-            return new EverythingOk();
-        } else {
-            return new NotEmptyPlace();
-        }
+    public Result build(Building building) {
+        Building foundBuilding = map.getBuilding(building.getPosition());
+        // if (foundBuilding.getType() == Type.TERRAIN) {
+        map.setBuilding(building, building.getPosition());
+        return new EverythingOk();
+        // } else {
+        // return new NotEmptyPlace();
+        // }
     }
 
     @Override

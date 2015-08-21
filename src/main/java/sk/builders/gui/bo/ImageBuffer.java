@@ -12,11 +12,15 @@ public class ImageBuffer {
 
     private BufferedImage terrain;
     private BufferedImage water;
+    private BufferedImage mountain;
+    private BufferedImage forest;
     private BufferedImage building;
 
     public ImageBuffer() throws IOException {
         terrain = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "terrain.png"));
         water = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "water.png"));
+        mountain = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "mountain.png"));
+        forest = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "forest.png"));
         building = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "building.png"));
     }
 
@@ -28,8 +32,15 @@ public class ImageBuffer {
         return water;
     }
 
+    public BufferedImage getMountain() {
+        return mountain;
+    }
+
+    public BufferedImage getForest() {
+        return forest;
+    }
+
     public BufferedImage getBuilding() {
         return building;
     }
-
 }

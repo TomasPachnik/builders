@@ -46,7 +46,18 @@ public class DisplayMap extends JComponent {
             g.drawImage(imageBuffer.getTerrain(), p.getX(), p.getY(), null);
             break;
         case BUILDING:
+            g.drawImage(imageBuffer.getBuilding(), p.getX(), p.getY(), null);
+            break;
+        case FOREST:
+            g.drawImage(imageBuffer.getForest(), p.getX(), p.getY(), null);
+            break;
+        case MOUNTAIN:
+            g.drawImage(imageBuffer.getMountain(), p.getX(), p.getY(), null);
+            break;
+        case WATER:
             g.drawImage(imageBuffer.getWater(), p.getX(), p.getY(), null);
+            break;
+        default:
             break;
         }
     }

@@ -27,6 +27,8 @@ public class ActionListeners {
     private MouseMotionEvent mouseMotionEvent;
     @Autowired
     private MousePositionRightPressed mousePositionRightPressed;
+    @Autowired
+    private ComboBoxListener comboBoxListener;
 
     public void initListeners() {
         displayMap.addMouseMotionListener(mouseMotionEvent);
@@ -47,8 +49,8 @@ public class ActionListeners {
 
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     Building building = null;
-                    building = new Castle(clicked);
-                    System.out.println(gameApi.build(building, clicked).isResult());
+                    building = new Building(comboBoxListener.getType(), clicked);
+                    System.out.println(gameApi.build(building).isResult());
                     displayMap.repaint();
                 } else if (SwingUtilities.isRightMouseButton(e)) {
                     System.out.println(gameApi.destroy(clicked).isResult());

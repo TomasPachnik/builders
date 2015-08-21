@@ -17,6 +17,7 @@ import sk.builders.gui.DisplayMap;
 import sk.builders.gui.MainScreen;
 import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.gui.listeners.ActionListeners;
+import sk.builders.gui.listeners.ComboBoxListener;
 import sk.builders.gui.listeners.MouseMotionEvent;
 import sk.builders.gui.listeners.MousePositionRightPressed;
 import sk.builders.mas.core.MasCore;
@@ -58,15 +59,19 @@ public class ObjectConfig {
     public MouseMotionEvent mouseMotionEvent() {
         return new MouseMotionEvent();
     }
-    
+
     @Bean
     public ActionListeners actionListeners() {
         return new ActionListeners();
     }
-    
+
     @Bean
-    public ImageBuffer imageBuffer() throws IOException{
+    public ImageBuffer imageBuffer() throws IOException {
         return new ImageBuffer();
     }
 
+    @Bean
+    public ComboBoxListener comboBoxListener() {
+        return new ComboBoxListener();
+    }
 }

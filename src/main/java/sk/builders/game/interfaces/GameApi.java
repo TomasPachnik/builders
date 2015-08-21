@@ -6,7 +6,7 @@ import sk.builders.game.results.Result;
 
 public interface GameApi {
 
-    Result build(Building building, Position position);
+    Result build(Building building);
 
     Result destroy(Position position);
 

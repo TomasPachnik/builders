@@ -13,7 +13,12 @@ import sk.builders.utils.Utils;
  * @author Tomas
  *
  */
-public abstract class Building {
+public class Building {
+
+    @Override
+    public String toString() {
+        return "Building [type=" + type + ", position=" + position + ", polygon=" + polygon + "]";
+    }
 
     private Type type;
     private Position position;
