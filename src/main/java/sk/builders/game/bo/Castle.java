@@ -1,6 +1,5 @@
 package sk.builders.game.bo;
 
-
 import sk.builders.game.enums.Type;
 import sk.builders.utils.Utils;
 
@@ -12,8 +11,8 @@ import sk.builders.utils.Utils;
  */
 public class Castle extends Building {
 
-    public Castle(Position position){
-        super(Type.BUILDING, position, Utils.getImage(Type.BUILDING));
+    public Castle(Position position) {
+        super(Type.BUILDING, position);
     }
 
     private Warehouse warehouse;

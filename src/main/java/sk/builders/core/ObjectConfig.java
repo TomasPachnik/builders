@@ -15,6 +15,7 @@ import sk.builders.game.bo.Map;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.DisplayMap;
 import sk.builders.gui.MainScreen;
+import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.gui.listeners.ActionListeners;
 import sk.builders.gui.listeners.MouseMotionEvent;
 import sk.builders.gui.listeners.MousePositionRightPressed;
@@ -61,6 +62,11 @@ public class ObjectConfig {
     @Bean
     public ActionListeners actionListeners() {
         return new ActionListeners();
+    }
+    
+    @Bean
+    public ImageBuffer imageBuffer() throws IOException{
+        return new ImageBuffer();
     }
 
 }

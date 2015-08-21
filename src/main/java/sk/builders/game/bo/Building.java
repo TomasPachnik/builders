@@ -18,17 +18,11 @@ public abstract class Building {
     private Type type;
     private Position position;
     private Polygon polygon;
-    private BufferedImage image;
 
-    public Building(Type type, Position position, BufferedImage image) {
+    public Building(Type type, Position position) {
         this.type = type;
         this.position = position;
         this.polygon = Utils.initPolygon(position);
-        this.setImage(image);
-    }
-
-    public void draw(Graphics g) {
-        g.drawImage(image, position.getX(), position.getY(), null);
     }
 
     public Type getType() {
@@ -53,14 +47,6 @@ public abstract class Building {
 
     public void setPolygon(Polygon polygon) {
         this.polygon = polygon;
-    }
-
-    public BufferedImage getImage() {
-        return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
     }
 
 }

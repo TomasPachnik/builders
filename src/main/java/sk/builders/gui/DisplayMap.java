@@ -15,12 +15,15 @@ import sk.builders.game.bo.Position;
 import sk.builders.game.enums.Type;
 import sk.builders.gui.bo.Castle;
 import sk.builders.gui.bo.Grass;
+import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.utils.Utils;
 
 public class DisplayMap extends JComponent {
 
     @Autowired
     private Map map;
+    @Autowired
+    private ImageBuffer imageBuffer;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -47,12 +50,10 @@ public class DisplayMap extends JComponent {
         p.setY(p.getY() + Utils.OFFSET_Y);
         switch (b.getType()) {
         case TERRAIN:
-            Grass grassObj = new Grass(p.getX(), p.getY(), Utils.getImage(Type.TERRAIN));
-            grassObj.draw(g);
+            g.drawImage(imageBuffer.getTerrain(), p.getX(), p.getY(), null);
             break;
         case BUILDING:
-            Castle castleObj = new Castle(p.getX(), p.getY(), Utils.getImage(Type.WATER));
-            castleObj.draw(g);
+            g.drawImage(imageBuffer.getWater(), p.getX(), p.getY(), null);
             break;
         }
     }
