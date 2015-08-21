@@ -2,19 +2,12 @@ package sk.builders.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.swing.JComponent;
-
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
-import sk.builders.game.enums.Type;
-import sk.builders.gui.bo.Castle;
-import sk.builders.gui.bo.Grass;
 import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.utils.Utils;
 
