@@ -16,7 +16,6 @@ public class Utils {
     public static final int MAP_LENGTH = 50;
     public static int OFFSET_X = 300;
     public static int OFFSET_Y = 0;
-    public static final String MAIN_RESOURCE_PATH = "src/main/resources/";
     public static final int LENGTH = 64;
     public static final int HALF_LENGTH = LENGTH / 2;
 
@@ -39,15 +38,4 @@ public class Utils {
     public static boolean containsPoint(Polygon polygon, Position position) {
         return polygon.contains(new Point(position.getX(), position.getY()));
     }
-
-    public static BufferedImage getImage(Type building) {
-        try {
-            return ImageIO.read(new File(MAIN_RESOURCE_PATH + building.toString().toLowerCase() + ".png"));
-        } catch (IOException e) {
-            System.err.println(e + " - " + MAIN_RESOURCE_PATH + building.toString().toLowerCase() + ".png");
-        }
-        return null;
-
-    }
-
 }

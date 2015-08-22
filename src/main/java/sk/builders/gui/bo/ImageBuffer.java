@@ -17,11 +17,11 @@ public class ImageBuffer {
     private BufferedImage building;
 
     public ImageBuffer() throws IOException {
-        terrain = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "terrain.png"));
-        water = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "water.png"));
-        mountain = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "mountain.png"));
-        forest = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "forest.png"));
-        building = ImageIO.read(new File(Utils.MAIN_RESOURCE_PATH + "building.png"));
+        terrain = ImageIO.read(getClass().getClassLoader().getResourceAsStream("terrain.png"));
+        water = ImageIO.read(getClass().getClassLoader().getResourceAsStream("water.png"));
+        mountain = ImageIO.read(getClass().getClassLoader().getResourceAsStream("mountain.png"));
+        forest = ImageIO.read(getClass().getClassLoader().getResourceAsStream("forest.png"));
+        building = ImageIO.read(getClass().getClassLoader().getResourceAsStream("building.png"));
     }
 
     public BufferedImage getTerrain() {

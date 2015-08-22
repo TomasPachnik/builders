@@ -10,9 +10,9 @@ public class MainTest {
 
     @Test
     public void main() {
-        new CoreImpl(ObjectConfig.class);
-        Position p = new Position(1, 0);
-        Utils.calculatePosition(p);
+      //  new CoreImpl(ObjectConfig.class);
+      //  Position p = new Position(1, 0);
+        //Utils.calculatePosition(p);
     }
 
 }

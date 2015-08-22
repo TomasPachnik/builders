@@ -1,12 +1,6 @@
 package sk.builders.core;
 
-import static sk.builders.utils.Utils.MAIN_RESOURCE_PATH;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import sk.builders.core.annotations.Bean;
 import sk.builders.core.annotations.Config;

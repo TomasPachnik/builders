@@ -1,12 +1,30 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-
-sourceCompatibility = 1.7
-version = '1.0'
+apply plugin: 'application'
+sourceCompatibility = 1.8
+version = '0.1'
+mainClassName = 'sk.builders.main.Main'
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart',
                    'Implementation-Version': version
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'sk.builders.main.Main'
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
     }
 }
 

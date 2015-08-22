@@ -14,13 +14,12 @@ public class ComboBoxListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox) e.getSource();
         String selectedItem = (String) cb.getSelectedItem();
-        System.out.println(selectedItem);
         switch (selectedItem) {
         case "voda":
             type = Type.WATER;
             break;
         case "les":
-            type = Type.FOREST;
+             type = Type.FOREST;
             break;
         case "hory":
             type = Type.MOUNTAIN;
