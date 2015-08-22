@@ -27,6 +27,10 @@ public class MainScreen {
     private ComboBoxListener comboBoxListener;
     @Autowired
     private GameApi gameApi;
+    @Autowired
+    private JButton save;
+    @Autowired
+    private JButton load;
 
     public void draw() {
         JFrame guiFrame = new JFrame();
@@ -39,38 +43,6 @@ public class MainScreen {
 
         String[] petStrings = { "luka", "voda", "les", "hory" };
         JComboBox petList = new JComboBox(petStrings);
-        JButton save = new JButton("uloz");
-        JButton load = new JButton("nacitaj");
-        save.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    gameApi.save();
-                } catch (FileNotFoundException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (UnsupportedEncodingException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-
-            }
-        });
-        load.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    gameApi.load();
-                    displayMap.repaint();
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-
-            }
-        });
         petList.addActionListener(comboBoxListener);
         petList.setSelectedIndex(0);
         displayMap.setPreferredSize(new Dimension(1280 - 32, 700 - 32));

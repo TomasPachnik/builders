@@ -2,6 +2,8 @@ package sk.builders.core;
 
 import java.io.IOException;
 
+import javax.swing.JButton;
+
 import sk.builders.core.annotations.Bean;
 import sk.builders.core.annotations.Config;
 import sk.builders.game.bl.impl.GameApiImpl;
@@ -67,5 +69,15 @@ public class ObjectConfig {
     @Bean
     public ComboBoxListener comboBoxListener() {
         return new ComboBoxListener();
+    }
+
+    @Bean
+    public JButton save() {
+        return new JButton("uloz");
+    }
+
+    @Bean
+    public JButton load() {
+        return new JButton("nacitaj");
     }
 }

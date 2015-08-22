@@ -1,9 +1,14 @@
 package sk.builders.gui.listeners;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
+import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import sk.builders.core.annotations.Autowired;
@@ -29,9 +34,35 @@ public class ActionListeners {
     private MousePositionRightPressed mousePositionRightPressed;
     @Autowired
     private ComboBoxListener comboBoxListener;
+    @Autowired
+    private JButton save;
+    @Autowired
+    private JButton load;
 
     public void initListeners() {
         displayMap.addMouseMotionListener(mouseMotionEvent);
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    gameApi.save();
+                } catch (FileNotFoundException | UnsupportedEncodingException e1) {
+                    System.err.println(e1);
+                }
+            }
+
+        });
+        load.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    gameApi.load();
+                } catch (IOException e1) {
+                    System.err.println(e1);
+                }
+                displayMap.repaint();
+            }
+        });
 
         displayMap.addMouseListener(new MouseListener() {
             @Override
