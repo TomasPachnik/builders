@@ -2,15 +2,10 @@ package sk.builders.utils;
 
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
+import java.util.LinkedList;
+import java.util.List;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
-import sk.builders.game.enums.Type;
 
 public class Utils {
 
@@ -51,4 +46,93 @@ public class Utils {
         return null;
     }
 
+    public static List<Position> aStar(Position start, Position destination) {
+        List<AStarNode> open = new LinkedList<AStarNode>();
+        List<AStarNode> closed = new LinkedList<AStarNode>();
+        open.add(new AStarNode(getH(start, destination), start));
+        AStarNode best = getBestNode(open);
+        while (best.getPosition() != destination) {
+            if (!listContainsPosition(closed, best.getPosition())) {
+                closed.add(best);
+            }
+            if ((best.getPosition().getX() == destination.getX()) && (best.getPosition().getY() == destination.getY())) {
+                List<Position> returnList = new LinkedList<Position>();
+                for (AStarNode node : closed) {
+                    returnList.add(node.getPosition());
+                }
+                return returnList;
+            }
+            List<Position> neighbors = getClosestPositions(best.getPosition());
+            for (Position position : neighbors) {
+                if (listContainsPosition(closed, position) && (getH(position, destination) < best.getValue())) {
+                    AStarNode node = getNode(closed, position);
+                    node.setValue(getH(position, destination));
+                    best = node;
+                } else {
+                    if (listContainsPosition(open, position) && (getH(position, destination) < best.getValue())) {
+                        best = new AStarNode(getH(position, destination), position);
+                    } else {
+                        if (!listContainsPosition(open, position)) {
+                            open.add(new AStarNode(getH(position, destination), position));
+                        }
+                    }
+                }
+            }
+
+        }
+        return new LinkedList<Position>();
+    }
+
+    private static AStarNode getNode(List<AStarNode> list, Position position) {
+        for (AStarNode node : list) {
+            if (node.getPosition() == position) {
+                return node;
+            }
+        }
+        return null;
+    }
+
+    private static boolean listContainsPosition(List<AStarNode> list, Position position) {
+        for (AStarNode node : list) {
+            if ((node.getPosition().getX() == position.getX()) && (node.getPosition().getY() == position.getY())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static double getH(Position start, Position destination) {
+        return Math.sqrt(Math.pow((start.getX() - destination.getX()), 2) + Math.pow((start.getY() - destination.getY()), 2));
+    }
+
+    private static AStarNode getBestNode(List<AStarNode> list) {
+        double value = Double.MAX_VALUE;
+        AStarNode aStarNode = null;
+        for (AStarNode node : list) {
+            if (node.getValue() < value) {
+                value = node.getValue();
+                aStarNode = node;
+            }
+        }
+        return aStarNode;
+    }
+
+    /**
+     * return list of closest tiles
+     * 
+     * @param start
+     * @return
+     */
+    private static List<Position> getClosestPositions(Position start) {
+        List<Position> list = new LinkedList<Position>();
+        if (start.getX() != 0) {
+            list.add(new Position(start.getX() - 1, start.getY()));
+        }
+        if (start.getY() != 0) {
+            list.add(new Position(start.getX(), start.getY() - 1));
+        }
+        list.add(new Position(start.getX(), start.getY() + 1));
+        list.add(new Position(start.getX() + 1, start.getY()));
+        return list;
+    }
 }
