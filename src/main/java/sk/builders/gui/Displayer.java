@@ -31,8 +31,11 @@ public class Displayer extends JComponent {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         // prelezie polom mapy a vykresli budovy
-        for (int i = 0; i < map.getMap()[0].length; i++) {
-            for (int j = 0; j < map.getMap()[1].length; j++) {
+        for (int j = 0; j < map.getMap()[1].length; j++) {
+            for (int i = 0; i < map.getMap()[0].length; i++) {
+                if (person.getPosition().getX() == i && person.getPosition().getY() == j) {
+                    g.fillRect(person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, 8, 16);
+                }
                 try {
                     drawBuilding(map.getBuilding(new Position(i, j)), g);
                 } catch (IOException e) {
@@ -40,10 +43,6 @@ public class Displayer extends JComponent {
                 }
             }
         }
-
-        // vykreslim vsetky pohybujuce sa veci
-        g.fillRect(person.getPosition().getX() + Utils.OFFSET_X, person.getPosition().getY() + Utils.OFFSET_Y, 8, 16);
-
     }
 
     private void drawBuilding(Building b, Graphics g) throws IOException {

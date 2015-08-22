@@ -18,7 +18,7 @@ public class TimeAgent extends Agent {
 
     @Override
     public void perform(MasCore core, Message message) throws InterruptedException {
-        if (count < 17) {
+        if (count < 16) {
             count++;
             switch (direction) {
             case 0:
@@ -41,14 +41,14 @@ public class TimeAgent extends Agent {
             } else {
                 direction++;
             }
+
         }
 
         core.getDisplayer().repaint();
-        // System.out.println("time: " + core.getSimulationTime());
         message.setSendTime(core.getSimulationTime());
         message.setExecuteTime(core.getSimulationTime() + sleep);
         core.sendMessage(message);
-        Thread.sleep(sleep);
+         Thread.sleep(sleep);
     }
 
 }

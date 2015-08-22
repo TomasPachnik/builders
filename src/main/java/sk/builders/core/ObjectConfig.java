@@ -85,6 +85,6 @@ public class ObjectConfig {
 
     @Bean
     public Person person() {
-        return new Person(new Position(92, 562));
+        return new Person(new Position(3, 3));
     }
 }
