@@ -4,14 +4,15 @@ import sk.builders.utils.Utils;
 
 public class Person {
     private Position position;
-    private Position positionInTile;
     private Position totalPosition;
+    private int tact;
+    private boolean leftHand;
 
     public Person(Position position) {
         super();
         this.position = position;
-        positionInTile = new Position(0, 0);
         this.totalPosition = position;
+        this.tact = 0;
     }
 
     public Position getPosition() {
@@ -27,52 +28,67 @@ public class Person {
     }
 
     public void moveRightDown() {
-        positionInTile = new Position(positionInTile.getX() + 2, positionInTile.getY() + 1);
-        if (positionInTile.getX() > 31 || positionInTile.getY() > 15) {
-            position.setX(position.getX() + 1);
-            positionInTile.setX(0);
-            positionInTile.setY(0);
-        }
-        move();
-    }
-
-    public void moveRightUp() {
-        positionInTile = new Position(positionInTile.getX() + 2, positionInTile.getY() - 1);
-        if (positionInTile.getX() > 31 || positionInTile.getY() > 15) {
-            position.setY(position.getY() - 1);
-            positionInTile.setX(0);
-            positionInTile.setY(0);
-        }
-        move();
-    }
-
-    public void moveLeftDown() {
-        positionInTile = new Position(positionInTile.getX() - 2, positionInTile.getY() + 1);
-        if (positionInTile.getX() < -31 || positionInTile.getY() < -15) {
-            position.setY(position.getY() + 1);
-            positionInTile.setX(0);
-            positionInTile.setY(0);
-        }
-        move();
-    }
-
-    public void moveLeftUp() {
-        positionInTile = new Position(positionInTile.getX() - 2, positionInTile.getY() - 1);
-        if (positionInTile.getX() < -31 || positionInTile.getY() < -15) {
-            position.setX(position.getX() - 1);
-            positionInTile.setX(0);
-            positionInTile.setY(0);
-        }
-        move();
-    }
-
-    private void move() {
+        tact++;
+        leftHand = !leftHand;
         Position pos = Utils.calculatePosition(position);
-        pos.setX(pos.getX() + positionInTile.getX());
-        pos.setY(pos.getY() + positionInTile.getY());
+        pos.setX(pos.getX() + (tact * 2));
+        pos.setY(pos.getY() + tact);
         totalPosition = pos;
         totalPosition.setX(totalPosition.getX() + 26);
         totalPosition.setY(totalPosition.getY() + 16);
+        if (tact >= 16) {
+            tact = 0;
+            position.setX(position.getX() + 1);
+        }
+    }
+
+    public void moveRightUp() {
+        tact++;
+        leftHand = !leftHand;
+        Position pos = Utils.calculatePosition(position);
+        pos.setX(pos.getX() + (tact * 2));
+        pos.setY(pos.getY() - tact);
+        totalPosition = pos;
+        totalPosition.setX(totalPosition.getX() + 26);
+        totalPosition.setY(totalPosition.getY() + 16);
+        if (tact >= 16) {
+            tact = 0;
+            position.setY(position.getY() - 1);
+            position.setX(position.getX() - 1);
+        }
+    }
+
+    public void moveLeftDown() {
+        tact++;
+        leftHand = !leftHand;
+        Position pos = Utils.calculatePosition(position);
+        pos.setX(pos.getX() - (tact * 2));
+        pos.setY(pos.getY() + tact);
+        totalPosition = pos;
+        totalPosition.setX(totalPosition.getX() + 26);
+        totalPosition.setY(totalPosition.getY() + 16);
+        if (tact >= 16) {
+            tact = 0;
+            position.setY(position.getY() + 1);
+        }
+    }
+
+    public void moveLeftUp() {
         System.out.println(position);
+        leftHand = !leftHand;
+        tact++;
+        Position pos = Utils.calculatePosition(position);
+        pos.setX(pos.getX() + 32 - (tact * 2));
+        pos.setY(pos.getY() + 16 - tact);
+        totalPosition = pos;
+        totalPosition.setX(totalPosition.getX() + 26);
+        totalPosition.setY(totalPosition.getY() + 16);
+        if (tact >= 16) {
+            tact = 0;
+        }
+    }
+
+    public boolean isLeftHand() {
+        return leftHand;
     }
 }
