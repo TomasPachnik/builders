@@ -88,7 +88,7 @@ public class CoreImpl implements Core {
         } catch (BeanNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        int sleep = 1000;
+        int sleep = 100;
         TimeAgent agent = new TimeAgent(sleep);
         Message message = new Message(agent, agent, sleep, sleep);
         core.sendMessage(message);

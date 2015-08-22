@@ -6,12 +6,22 @@ import java.util.List;
 
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Map;
+import sk.builders.game.bo.Person;
+import sk.builders.gui.Displayer;
 import sk.builders.mas.exceptions.BackInTimeException;
 
 public class MasCore {
 
     @Autowired
     private Map map;
+    @Autowired
+    private Displayer displayMap;
+    @Autowired
+    private Person person;
+
+    public Person getPerson() {
+        return person;
+    }
 
     private long simulationTime;
     private List<Message> messageCalendar;
@@ -55,6 +65,10 @@ public class MasCore {
 
     public Map getMap() {
         return map;
+    }
+
+    public Displayer getDisplayer() {
+        return displayMap;
     }
 
 }

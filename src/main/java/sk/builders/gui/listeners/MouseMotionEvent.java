@@ -6,13 +6,13 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.SwingUtilities;
 
 import sk.builders.core.annotations.Autowired;
-import sk.builders.gui.DisplayMap;
+import sk.builders.gui.Displayer;
 import sk.builders.utils.Utils;
 
 public class MouseMotionEvent implements MouseMotionListener {
 
     @Autowired
-    private DisplayMap displayMap;
+    private Displayer displayMap;
     @Autowired
     private MousePositionRightPressed mousePositionRightPressed;
 

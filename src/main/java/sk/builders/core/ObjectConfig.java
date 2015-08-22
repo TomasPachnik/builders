@@ -8,8 +8,10 @@ import sk.builders.core.annotations.Bean;
 import sk.builders.core.annotations.Config;
 import sk.builders.game.bl.impl.GameApiImpl;
 import sk.builders.game.bo.Map;
+import sk.builders.game.bo.Person;
+import sk.builders.game.bo.Position;
 import sk.builders.game.interfaces.GameApi;
-import sk.builders.gui.DisplayMap;
+import sk.builders.gui.Displayer;
 import sk.builders.gui.MainScreen;
 import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.gui.listeners.ActionListeners;
@@ -47,8 +49,8 @@ public class ObjectConfig {
     }
 
     @Bean
-    public DisplayMap displayMap() {
-        return new DisplayMap();
+    public Displayer displayMap() {
+        return new Displayer();
     }
 
     @Bean
@@ -79,5 +81,10 @@ public class ObjectConfig {
     @Bean
     public JButton load() {
         return new JButton("nacitaj");
+    }
+
+    @Bean
+    public Person person() {
+        return new Person(new Position(92, 562));
     }
 }

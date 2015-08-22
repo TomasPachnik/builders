@@ -20,7 +20,7 @@ import sk.builders.gui.listeners.ComboBoxListener;
 public class MainScreen {
 
     @Autowired
-    private DisplayMap displayMap;
+    private Displayer displayMap;
     @Autowired
     private ActionListeners actionListeners;
     @Autowired

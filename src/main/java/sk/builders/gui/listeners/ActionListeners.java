@@ -17,13 +17,13 @@ import sk.builders.game.bo.Castle;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
 import sk.builders.game.interfaces.GameApi;
-import sk.builders.gui.DisplayMap;
+import sk.builders.gui.Displayer;
 import sk.builders.utils.Utils;
 
 public class ActionListeners {
 
     @Autowired
-    private DisplayMap displayMap;
+    private Displayer displayMap;
     @Autowired
     private Map map;
     @Autowired
@@ -71,6 +71,7 @@ public class ActionListeners {
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     Building building = null;
                     building = new Building(comboBoxListener.getType(), clicked);
+                    System.out.println(Utils.calculatePosition(clicked));
                     System.out.println(gameApi.build(building).isResult());
                     displayMap.repaint();
                 } else if (SwingUtilities.isRightMouseButton(e)) {

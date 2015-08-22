@@ -3,20 +3,25 @@ package sk.builders.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.IOException;
+
 import javax.swing.JComponent;
+
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
+import sk.builders.game.bo.Person;
 import sk.builders.game.bo.Position;
 import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.utils.Utils;
 
-public class DisplayMap extends JComponent {
+public class Displayer extends JComponent {
 
     @Autowired
     private Map map;
     @Autowired
     private ImageBuffer imageBuffer;
+    @Autowired
+    private Person person;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -35,6 +40,10 @@ public class DisplayMap extends JComponent {
                 }
             }
         }
+
+        // vykreslim vsetky pohybujuce sa veci
+        g.fillRect(person.getPosition().getX() + Utils.OFFSET_X, person.getPosition().getY() + Utils.OFFSET_Y, 8, 16);
+
     }
 
     private void drawBuilding(Building b, Graphics g) throws IOException {
