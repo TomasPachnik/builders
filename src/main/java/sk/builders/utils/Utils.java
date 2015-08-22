@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
 import sk.builders.game.enums.Type;
 
@@ -35,7 +36,19 @@ public class Utils {
         return poly;
     }
 
-    public static boolean containsPoint(Polygon polygon, Position position) {
+    private static boolean containsPoint(Polygon polygon, Position position) {
         return polygon.contains(new Point(position.getX(), position.getY()));
     }
+
+    public static Position calculateReverse(Position p, Map map) {
+        for (int i = 0; i < map.getMap()[0].length; i++) {
+            for (int j = 0; j < map.getMap()[1].length; j++) {
+                if (Utils.containsPoint(map.getBuilding(new Position(i, j)).getPolygon(), new Position(p.getX() - Utils.OFFSET_X, p.getY() - Utils.OFFSET_Y))) {
+                    return map.getBuilding(new Position(i, j)).getPosition();
+                }
+            }
+        }
+        return null;
+    }
+
 }
