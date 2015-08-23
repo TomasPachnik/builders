@@ -110,17 +110,19 @@ public class Person {
     }
 
     private void moveRightUp() {
+        if (tact == 2) {
+            position.setY(position.getY() - 1);
+        }
         tact++;
         leftHand = !leftHand;
         Position pos = Utils.calculatePosition(position);
-        pos.setX(pos.getX() + (tact * 2));
-        pos.setY(pos.getY() - tact);
+        pos.setX(pos.getX() - 32 + (tact * 2));
+        pos.setY(pos.getY() + 16 - tact);
         totalPosition = pos;
         totalPosition.setX(totalPosition.getX() + 26);
         totalPosition.setY(totalPosition.getY() + 16);
         if (tact >= 16) {
             tact = 0;
-            position.setY(position.getY() - 1);
         }
     }
 
