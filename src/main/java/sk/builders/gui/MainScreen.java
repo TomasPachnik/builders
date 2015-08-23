@@ -1,11 +1,6 @@
 package sk.builders.gui;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import sk.builders.core.annotations.Autowired;
+import sk.builders.game.bo.Person;
+import sk.builders.game.bo.Position;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.listeners.ActionListeners;
 import sk.builders.gui.listeners.ComboBoxListener;
@@ -40,7 +37,6 @@ public class MainScreen {
         guiFrame.setSize(1280, 700);
         guiFrame.setLocationRelativeTo(null);
         final JPanel panel = new JPanel();
-
         String[] petStrings = { "luka", "voda", "les", "hory" };
         JComboBox petList = new JComboBox(petStrings);
         petList.addActionListener(comboBoxListener);

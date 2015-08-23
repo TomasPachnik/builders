@@ -34,7 +34,6 @@ public class Displayer extends JComponent {
         for (int j = 0; j < map.getMap()[1].length; j++) {
             for (int i = 0; i < map.getMap()[0].length; i++) {
                 if (person.getPosition().getX() == i && person.getPosition().getY() == j) {
-                    // g.fillRect(person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, 8, 16);
                     if (person.isLeftHand()) {
                         g.drawImage(imageBuffer.getPersonAA(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
                     } else {

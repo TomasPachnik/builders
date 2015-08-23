@@ -14,8 +14,8 @@ public class TimeAgent extends Agent {
 
     @Override
     public void perform(MasCore core, Message message) throws InterruptedException {
+        
         core.getPerson().move();
-
         core.getDisplayer().repaint();
         message.setSendTime(core.getSimulationTime());
         message.setExecuteTime(core.getSimulationTime() + sleep);

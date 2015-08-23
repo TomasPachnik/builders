@@ -13,8 +13,8 @@ import javax.swing.SwingUtilities;
 
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
-import sk.builders.game.bo.Castle;
 import sk.builders.game.bo.Map;
+import sk.builders.game.bo.Person;
 import sk.builders.game.bo.Position;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.Displayer;
@@ -38,6 +38,8 @@ public class ActionListeners {
     private JButton save;
     @Autowired
     private JButton load;
+    @Autowired
+    private Person person;
 
     public void initListeners() {
         displayMap.addMouseMotionListener(mouseMotionEvent);
@@ -75,7 +77,7 @@ public class ActionListeners {
                     System.out.println(gameApi.build(building).isResult());
                     displayMap.repaint();
                 } else if (SwingUtilities.isRightMouseButton(e)) {
-                    System.out.println(gameApi.destroy(clicked).isResult());
+                    person.setDestination(new Position(clicked.getX()+1, clicked.getY()+1));
                 }
                 displayMap.repaint();
             }

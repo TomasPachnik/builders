@@ -1,5 +1,6 @@
 package sk.builders.game.bo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import sk.builders.game.enums.Direction;
@@ -17,9 +18,34 @@ public class Person {
     public Person(Position position) {
         super();
         this.position = position;
-        this.totalPosition = position;
+        this.totalPosition = Utils.calculatePosition(position);
+        this.totalPosition.setX(totalPosition.getX() + 26);
+        this.totalPosition.setY(totalPosition.getY() + 16);
         this.tact = 0;
-        direction = Direction.STAY;
+        this.movement = new LinkedList<Direction>();
+        this.direction = Direction.STAY;
+    }
+
+    public void setDestination(Position destination) {
+        if (direction != Direction.STAY) {
+            switch (direction) {
+            case LEFT_DOWN:
+                movement = Utils.aStar(new Position(position.getX(), position.getY() + 1), destination);
+                break;
+            case LEFT_UP:
+                movement = Utils.aStar(new Position(position.getX() - 1, position.getY()), destination);
+                break;
+            case RIGHT_DOWN:
+                movement = Utils.aStar(new Position(position.getX() + 1, position.getY()), destination);
+                break;
+            case RIGHT_UP:
+                movement = Utils.aStar(new Position(position.getX(), position.getY() - 1), destination);
+                break;
+            }
+        } else {
+            movement = Utils.aStar(position, destination);
+
+        }
     }
 
     public Position getPosition() {
@@ -35,7 +61,7 @@ public class Person {
     }
 
     public void move() {
-        if (tact < 16) {
+        if (tact > 0 && tact <= 16) {
             tact++;
             switch (direction) {
             case RIGHT_UP:
@@ -61,6 +87,7 @@ public class Person {
             if (!movement.isEmpty()) {
                 direction = movement.get(0);
                 movement.remove(0);
+                tact = 1;
             } else {
                 direction = Direction.STAY;
             }
@@ -94,7 +121,6 @@ public class Person {
         if (tact >= 16) {
             tact = 0;
             position.setY(position.getY() - 1);
-            position.setX(position.getX() - 1);
         }
     }
 
@@ -114,6 +140,9 @@ public class Person {
     }
 
     private void moveLeftUp() {
+        if (tact == 2) {
+            position.setX(position.getX() - 1);
+        }
         leftHand = !leftHand;
         tact++;
         Position pos = Utils.calculatePosition(position);
@@ -133,9 +162,5 @@ public class Person {
 
     public List<Direction> getMovement() {
         return movement;
-    }
-
-    public void setMovement(List<Direction> movement) {
-        this.movement = movement;
     }
 }
