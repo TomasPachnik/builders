@@ -1,5 +1,8 @@
 package sk.builders.game.bo;
 
+import java.util.List;
+
+import sk.builders.game.enums.Direction;
 import sk.builders.utils.Utils;
 
 public class Person {
@@ -7,12 +10,16 @@ public class Person {
     private Position totalPosition;
     private int tact;
     private boolean leftHand;
+    private List<Direction> movement;
+    // actual direction
+    private Direction direction;
 
     public Person(Position position) {
         super();
         this.position = position;
         this.totalPosition = position;
         this.tact = 0;
+        direction = Direction.STAY;
     }
 
     public Position getPosition() {
@@ -27,7 +34,40 @@ public class Person {
         this.position = position;
     }
 
-    public void moveRightDown() {
+    public void move() {
+        if (tact < 16) {
+            tact++;
+            switch (direction) {
+            case RIGHT_UP:
+                moveRightUp();
+                break;
+            case LEFT_UP:
+                moveLeftUp();
+                break;
+            case LEFT_DOWN:
+                moveLeftDown();
+                break;
+            case RIGHT_DOWN:
+                moveRightDown();
+                break;
+            case WORK:
+                // TODO dorobit
+                break;
+            case STAY:
+                tact = 0;
+                break;
+            }
+        } else {
+            if (!movement.isEmpty()) {
+                direction = movement.get(0);
+                movement.remove(0);
+            } else {
+                direction = Direction.STAY;
+            }
+        }
+    }
+
+    private void moveRightDown() {
         tact++;
         leftHand = !leftHand;
         Position pos = Utils.calculatePosition(position);
@@ -42,7 +82,7 @@ public class Person {
         }
     }
 
-    public void moveRightUp() {
+    private void moveRightUp() {
         tact++;
         leftHand = !leftHand;
         Position pos = Utils.calculatePosition(position);
@@ -58,7 +98,7 @@ public class Person {
         }
     }
 
-    public void moveLeftDown() {
+    private void moveLeftDown() {
         tact++;
         leftHand = !leftHand;
         Position pos = Utils.calculatePosition(position);
@@ -73,8 +113,7 @@ public class Person {
         }
     }
 
-    public void moveLeftUp() {
-        System.out.println(position);
+    private void moveLeftUp() {
         leftHand = !leftHand;
         tact++;
         Position pos = Utils.calculatePosition(position);
@@ -90,5 +129,13 @@ public class Person {
 
     public boolean isLeftHand() {
         return leftHand;
+    }
+
+    public List<Direction> getMovement() {
+        return movement;
+    }
+
+    public void setMovement(List<Direction> movement) {
+        this.movement = movement;
     }
 }

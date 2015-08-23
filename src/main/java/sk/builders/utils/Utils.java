@@ -4,8 +4,10 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.util.LinkedList;
 import java.util.List;
+
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
+import sk.builders.game.enums.Direction;
 
 public class Utils {
 
@@ -46,7 +48,7 @@ public class Utils {
         return null;
     }
 
-    public static List<Position> aStar(Position start, Position destination) {
+    public static List<Direction> aStar(Position start, Position destination) {
         List<AStarNode> open = new LinkedList<AStarNode>();
         List<AStarNode> closed = new LinkedList<AStarNode>();
         open.add(new AStarNode(getH(start, destination), start));
@@ -56,11 +58,8 @@ public class Utils {
                 closed.add(best);
             }
             if ((best.getPosition().getX() == destination.getX()) && (best.getPosition().getY() == destination.getY())) {
-                List<Position> returnList = new LinkedList<Position>();
-                for (AStarNode node : closed) {
-                    returnList.add(node.getPosition());
-                }
-                return returnList;
+
+                return transformToDirections(closed);
             }
             List<Position> neighbors = getClosestPositions(best.getPosition());
             for (Position position : neighbors) {
@@ -80,7 +79,7 @@ public class Utils {
             }
 
         }
-        return new LinkedList<Position>();
+        return new LinkedList<Direction>();
     }
 
     private static AStarNode getNode(List<AStarNode> list, Position position) {
@@ -101,7 +100,7 @@ public class Utils {
         return false;
     }
 
-    public static double getH(Position start, Position destination) {
+    private static double getH(Position start, Position destination) {
         return Math.sqrt(Math.pow((start.getX() - destination.getX()), 2) + Math.pow((start.getY() - destination.getY()), 2));
     }
 
@@ -134,5 +133,25 @@ public class Utils {
         list.add(new Position(start.getX(), start.getY() + 1));
         list.add(new Position(start.getX() + 1, start.getY()));
         return list;
+    }
+
+    private static List<Direction> transformToDirections(List<AStarNode> nodes) {
+        List<Direction> directions = new LinkedList<Direction>();
+        for (int i = 0; i < nodes.size() - 1; i++) {
+            int x1 = nodes.get(i).getPosition().getX();
+            int x2 = nodes.get(i + 1).getPosition().getX();
+            int y1 = nodes.get(i).getPosition().getY();
+            int y2 = nodes.get(i + 1).getPosition().getY();
+            if (x1 < x2 && y1 == y2) {
+                directions.add(Direction.RIGHT_DOWN);
+            } else if (x1 > x2 && y1 == y2) {
+                directions.add(Direction.LEFT_UP);
+            } else if (x1 == x2 && y1 < y2) {
+                directions.add(Direction.LEFT_DOWN);
+            } else if (x1 == x2 && y1 > y2) {
+                directions.add(Direction.RIGHT_UP);
+            }
+        }
+        return directions;
     }
 }

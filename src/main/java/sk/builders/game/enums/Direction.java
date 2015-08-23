@@ -1,5 +1,5 @@
 package sk.builders.game.enums;
 
 public enum Direction {
-    LEFT_DOWN, LEFT_UP, RIGHT_DOWN, RIGHT_UP
+    LEFT_DOWN, LEFT_UP, RIGHT_DOWN, RIGHT_UP, STAY, WORK
 }
