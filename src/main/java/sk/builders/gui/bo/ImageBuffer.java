@@ -11,8 +11,8 @@ public class ImageBuffer {
     private BufferedImage mountain;
     private BufferedImage forest;
     private BufferedImage building;
-    private BufferedImage personAB;
-    private BufferedImage personAA;
+    private BufferedImage person1B;
+    private BufferedImage person1A;
 
     public ImageBuffer() throws IOException {
         terrain = ImageIO.read(getClass().getClassLoader().getResourceAsStream("terrain.png"));
@@ -20,16 +20,16 @@ public class ImageBuffer {
         mountain = ImageIO.read(getClass().getClassLoader().getResourceAsStream("mountain.png"));
         forest = ImageIO.read(getClass().getClassLoader().getResourceAsStream("forest.png"));
         building = ImageIO.read(getClass().getClassLoader().getResourceAsStream("building.png"));
-        personAB = ImageIO.read(getClass().getClassLoader().getResourceAsStream("personAB.png"));
-        personAA = ImageIO.read(getClass().getClassLoader().getResourceAsStream("personAA.png"));
+        person1B = ImageIO.read(getClass().getClassLoader().getResourceAsStream("person1B.png"));
+        person1A = ImageIO.read(getClass().getClassLoader().getResourceAsStream("person1A.png"));
     }
 
-    public BufferedImage getPersonAA() {
-        return personAA;
+    public BufferedImage getPerson1A() {
+        return person1A;
     }
 
-    public BufferedImage getPersonAB() {
-        return personAB;
+    public BufferedImage getPerson1B() {
+        return person1B;
     }
 
     public BufferedImage getTerrain() {

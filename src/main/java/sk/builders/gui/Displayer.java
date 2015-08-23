@@ -30,14 +30,14 @@ public class Displayer extends JComponent {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        // prelezie polom mapy a vykresli budovy
+        // prelezie polom mapy a vykresli objekty
         for (int j = 0; j < map.getMap()[1].length; j++) {
             for (int i = 0; i < map.getMap()[0].length; i++) {
                 if (person.getPosition().getX() == i && person.getPosition().getY() == j) {
                     if (person.isLeftHand()) {
-                        g.drawImage(imageBuffer.getPersonAA(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
+                        g.drawImage(imageBuffer.getPerson1A(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
                     } else {
-                        g.drawImage(imageBuffer.getPersonAB(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
+                        g.drawImage(imageBuffer.getPerson1B(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
                     }
 
                 }

@@ -95,14 +95,10 @@ public class Person {
     }
 
     private void moveRightDown() {
-        tact++;
-        leftHand = !leftHand;
-        Position pos = Utils.calculatePosition(position);
+        Position pos = before();
         pos.setX(pos.getX() + (tact * 2));
         pos.setY(pos.getY() + tact);
-        totalPosition = pos;
-        totalPosition.setX(totalPosition.getX() + 26);
-        totalPosition.setY(totalPosition.getY() + 16);
+        after(pos);
         if (tact >= 16) {
             tact = 0;
             position.setX(position.getX() + 1);
@@ -113,28 +109,20 @@ public class Person {
         if (tact == 2) {
             position.setY(position.getY() - 1);
         }
-        tact++;
-        leftHand = !leftHand;
-        Position pos = Utils.calculatePosition(position);
+        Position pos = before();
         pos.setX(pos.getX() - 32 + (tact * 2));
         pos.setY(pos.getY() + 16 - tact);
-        totalPosition = pos;
-        totalPosition.setX(totalPosition.getX() + 26);
-        totalPosition.setY(totalPosition.getY() + 16);
+        after(pos);
         if (tact >= 16) {
             tact = 0;
         }
     }
 
     private void moveLeftDown() {
-        tact++;
-        leftHand = !leftHand;
-        Position pos = Utils.calculatePosition(position);
+        Position pos = before();
         pos.setX(pos.getX() - (tact * 2));
         pos.setY(pos.getY() + tact);
-        totalPosition = pos;
-        totalPosition.setX(totalPosition.getX() + 26);
-        totalPosition.setY(totalPosition.getY() + 16);
+        after(pos);
         if (tact >= 16) {
             tact = 0;
             position.setY(position.getY() + 1);
@@ -145,17 +133,25 @@ public class Person {
         if (tact == 2) {
             position.setX(position.getX() - 1);
         }
-        leftHand = !leftHand;
-        tact++;
-        Position pos = Utils.calculatePosition(position);
+        Position pos = before();
         pos.setX(pos.getX() + 32 - (tact * 2));
         pos.setY(pos.getY() + 16 - tact);
-        totalPosition = pos;
-        totalPosition.setX(totalPosition.getX() + 26);
-        totalPosition.setY(totalPosition.getY() + 16);
+        after(pos);
         if (tact >= 16) {
             tact = 0;
         }
+    }
+
+    private Position before() {
+        tact++;
+        leftHand = !leftHand;
+        return Utils.calculatePosition(position);
+    }
+
+    private void after(Position pos) {
+        totalPosition = pos;
+        totalPosition.setX(totalPosition.getX() + 26);
+        totalPosition.setY(totalPosition.getY() + 16);
     }
 
     public boolean isLeftHand() {
