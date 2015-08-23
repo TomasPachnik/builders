@@ -100,7 +100,7 @@ public class Utils {
         return false;
     }
 
-    private static double getH(Position start, Position destination) {
+    public static double getH(Position start, Position destination) {
         return Math.sqrt(Math.pow((start.getX() - destination.getX()), 2) + Math.pow((start.getY() - destination.getY()), 2));
     }
 
@@ -122,7 +122,7 @@ public class Utils {
      * @param start
      * @return
      */
-    private static List<Position> getClosestPositions(Position start) {
+    public static List<Position> getClosestPositions(Position start) {
         List<Position> list = new LinkedList<Position>();
         if (start.getX() != 0) {
             list.add(new Position(start.getX() - 1, start.getY()));

@@ -16,6 +16,7 @@ public class TimeAgent extends Agent {
     @Override
     public void perform(MasCore core, Message message) throws InterruptedException {
 
+        core.getGameLogic().work();
         for (Building building : core.getGameLogic().getBuildings()) {
             building.getWorker().move();
         }

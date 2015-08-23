@@ -30,7 +30,14 @@ public class Building {
         this.position = position;
         this.polygon = Utils.initPolygon(position);
         this.worker = new Person(new Position(position.getX() + 1, position.getY() + 1));
-        this.worker.setDestination(new Position(17, 6));
+    }
+
+    public boolean isWorkerHome() {
+        if ((position.getX() == worker.getPosition().getX() - 1) && (position.getY() == worker.getPosition().getY() - 1)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Type getType() {

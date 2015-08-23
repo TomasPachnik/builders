@@ -48,6 +48,10 @@ public class Person {
         }
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
     public Position getPosition() {
         return position;
     }
