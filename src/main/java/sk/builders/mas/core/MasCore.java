@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import sk.builders.core.annotations.Autowired;
+import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Person;
 import sk.builders.gui.Displayer;
@@ -17,10 +18,10 @@ public class MasCore {
     @Autowired
     private Displayer displayMap;
     @Autowired
-    private Person person;
+    private GameLogic gameLogic;
 
-    public Person getPerson() {
-        return person;
+    public GameLogic getGameLogic() {
+        return gameLogic;
     }
 
     private long simulationTime;

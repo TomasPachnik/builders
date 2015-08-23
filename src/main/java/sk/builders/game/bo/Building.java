@@ -23,11 +23,14 @@ public class Building {
     private Type type;
     private Position position;
     private Polygon polygon;
+    private Person worker;
 
     public Building(Type type, Position position) {
         this.type = type;
         this.position = position;
         this.polygon = Utils.initPolygon(position);
+        this.worker = new Person(new Position(position.getX() + 1, position.getY() + 1));
+        this.worker.setDestination(new Position(17, 6));
     }
 
     public Type getType() {
@@ -36,6 +39,10 @@ public class Building {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public Person getWorker() {
+        return worker;
     }
 
     public Position getPosition() {

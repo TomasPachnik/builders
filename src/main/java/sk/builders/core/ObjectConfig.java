@@ -6,6 +6,7 @@ import javax.swing.JButton;
 
 import sk.builders.core.annotations.Bean;
 import sk.builders.core.annotations.Config;
+import sk.builders.game.GameLogic;
 import sk.builders.game.bl.impl.GameApiImpl;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Person;
@@ -84,7 +85,7 @@ public class ObjectConfig {
     }
 
     @Bean
-    public Person person() {
-        return new Person(new Position(3, 3));
+    public GameLogic gameLogic() {
+        return new GameLogic();
     }
 }

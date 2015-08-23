@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.swing.JComponent;
 
 import sk.builders.core.annotations.Autowired;
+import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Person;
@@ -21,7 +22,7 @@ public class Displayer extends JComponent {
     @Autowired
     private ImageBuffer imageBuffer;
     @Autowired
-    private Person person;
+    private GameLogic gameLogic;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -33,14 +34,22 @@ public class Displayer extends JComponent {
         // prelezie polom mapy a vykresli objekty
         for (int j = 0; j < map.getMap()[1].length; j++) {
             for (int i = 0; i < map.getMap()[0].length; i++) {
-                if (person.getPosition().getX() == i && person.getPosition().getY() == j) {
-                    if (person.isLeftHand()) {
-                        g.drawImage(imageBuffer.getPerson1A(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
-                    } else {
-                        g.drawImage(imageBuffer.getPerson1B(), person.getTotal().getX() + Utils.OFFSET_X, person.getTotal().getY() + Utils.OFFSET_Y, null);
-                    }
+                for (Building building : gameLogic.getBuildings()) {
+                    // System.out.println(gameLogic.getBuildings().size());
+                    if (building.getWorker().getPosition().getX() == i && building.getWorker().getPosition().getY() == j) {
+                        if (building.getWorker().isLeftHand()) {
+                            g.drawImage(imageBuffer.getPerson1A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal()
+                                    .getY()
+                                    + Utils.OFFSET_Y, null);
+                        } else {
+                            g.drawImage(imageBuffer.getPerson1B(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal()
+                                    .getY()
+                                    + Utils.OFFSET_Y, null);
+                        }
 
+                    }
                 }
+
                 try {
                     drawBuilding(map.getBuilding(new Position(i, j)), g);
                 } catch (IOException e) {
@@ -58,8 +67,8 @@ public class Displayer extends JComponent {
         case TERRAIN:
             g.drawImage(imageBuffer.getTerrain(), p.getX(), p.getY(), null);
             break;
-        case BUILDING:
-            g.drawImage(imageBuffer.getBuilding(), p.getX(), p.getY(), null);
+        case CASTLE:
+            g.drawImage(imageBuffer.getCastle(), p.getX(), p.getY(), null);
             break;
         case FOREST:
             g.drawImage(imageBuffer.getForest(), p.getX(), p.getY(), null);
@@ -69,6 +78,9 @@ public class Displayer extends JComponent {
             break;
         case WATER:
             g.drawImage(imageBuffer.getWater(), p.getX(), p.getY(), null);
+            break;
+        case WOODCUTTER:
+            g.drawImage(imageBuffer.getWoodcutter(), p.getX(), p.getY(), null);
             break;
         default:
             break;

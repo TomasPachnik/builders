@@ -19,10 +19,16 @@ public class ComboBoxListener implements ActionListener {
             type = Type.WATER;
             break;
         case "les":
-             type = Type.FOREST;
+            type = Type.FOREST;
             break;
         case "hory":
             type = Type.MOUNTAIN;
+            break;
+        case "hrad":
+            type = Type.CASTLE;
+            break;
+        case "drevorubac":
+            type = Type.WOODCUTTER;
             break;
         default:
             type = Type.TERRAIN;

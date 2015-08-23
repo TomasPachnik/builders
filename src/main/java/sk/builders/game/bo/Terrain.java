@@ -1,7 +1,6 @@
 package sk.builders.game.bo;
 
 import sk.builders.game.enums.Type;
-import sk.builders.utils.Utils;
 
 public class Terrain extends Building {
 

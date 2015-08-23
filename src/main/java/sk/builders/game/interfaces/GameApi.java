@@ -16,6 +16,6 @@ public interface GameApi {
     
     void save() throws FileNotFoundException, UnsupportedEncodingException;
     
-    void load() throws FileNotFoundException, IOException;
+    void load(String name) throws FileNotFoundException, IOException;
 
 }

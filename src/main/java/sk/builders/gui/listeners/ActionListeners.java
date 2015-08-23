@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
 import sk.builders.core.annotations.Autowired;
+import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Person;
@@ -39,9 +40,10 @@ public class ActionListeners {
     @Autowired
     private JButton load;
     @Autowired
-    private Person person;
+    private GameLogic gameLogic;
 
     public void initListeners() {
+        loadMap();
         displayMap.addMouseMotionListener(mouseMotionEvent);
         save.addActionListener(new ActionListener() {
             @Override
@@ -57,12 +59,7 @@ public class ActionListeners {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    gameApi.load();
-                } catch (IOException e1) {
-                    System.err.println(e1);
-                }
-                displayMap.repaint();
+                // TODO empty listener
             }
         });
 
@@ -71,13 +68,12 @@ public class ActionListeners {
             public void mouseClicked(MouseEvent e) {
                 Position clicked = Utils.calculateReverse(new Position(e.getX(), e.getY()), map);
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    Building building = null;
-                    building = new Building(comboBoxListener.getType(), clicked);
-                    System.out.println(Utils.calculatePosition(clicked));
+                    Building building = new Building(comboBoxListener.getType(), clicked);
+                    gameLogic.addBuilding(building);
                     System.out.println(gameApi.build(building).isResult());
                     displayMap.repaint();
                 } else if (SwingUtilities.isRightMouseButton(e)) {
-                    person.setDestination(new Position(clicked.getX()+1, clicked.getY()+1));
+                    // person.setDestination(new Position(clicked.getX() + 1, clicked.getY() + 1));
                 }
                 displayMap.repaint();
             }
@@ -107,4 +103,11 @@ public class ActionListeners {
         });
     }
 
+    private void loadMap() {
+        try {
+            gameApi.load("level");
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
 }

@@ -1,7 +1,6 @@
 package sk.builders.game.bo;
 
 import sk.builders.game.enums.Type;
-import sk.builders.utils.Utils;
 
 /**
  * zakladna budova
@@ -12,7 +11,7 @@ import sk.builders.utils.Utils;
 public class Castle extends Building {
 
     public Castle(Position position) {
-        super(Type.BUILDING, position);
+        super(Type.CASTLE, position);
     }
 
     private Warehouse warehouse;

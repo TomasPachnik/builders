@@ -8,8 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import sk.builders.core.annotations.Autowired;
-import sk.builders.game.bo.Person;
-import sk.builders.game.bo.Position;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.listeners.ActionListeners;
 import sk.builders.gui.listeners.ComboBoxListener;
@@ -31,18 +29,17 @@ public class MainScreen {
 
     public void draw() {
         JFrame guiFrame = new JFrame();
-
         guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         guiFrame.setTitle("Builders");
         guiFrame.setSize(1280, 700);
         guiFrame.setLocationRelativeTo(null);
         final JPanel panel = new JPanel();
-        String[] petStrings = { "luka", "voda", "les", "hory" };
-        JComboBox petList = new JComboBox(petStrings);
-        petList.addActionListener(comboBoxListener);
-        petList.setSelectedIndex(0);
+        String[] buildings = { "luka", "voda", "les", "hory", "hrad", "drevorubac" };
+        JComboBox buildingList = new JComboBox(buildings);
+        buildingList.addActionListener(comboBoxListener);
+        buildingList.setSelectedIndex(0);
         displayMap.setPreferredSize(new Dimension(1280 - 32, 700 - 32));
-        panel.add(petList);
+        panel.add(buildingList);
         panel.add(save);
         panel.add(load);
         panel.add(displayMap);
