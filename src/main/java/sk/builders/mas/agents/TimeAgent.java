@@ -1,5 +1,8 @@
 package sk.builders.mas.agents;
 
+import java.util.Collections;
+import java.util.List;
+
 import sk.builders.game.bo.Building;
 import sk.builders.mas.core.Agent;
 import sk.builders.mas.core.MasCore;
@@ -17,7 +20,8 @@ public class TimeAgent extends Agent {
     public void perform(MasCore core, Message message) throws InterruptedException {
 
         core.getGameLogic().work();
-        for (Building building : core.getGameLogic().getBuildings()) {
+        List<Building> list = Collections.synchronizedList(core.getGameLogic().getBuildings());
+        for (Building building : list) {
             building.getWorker().move();
         }
         core.getDisplayer().repaint();
