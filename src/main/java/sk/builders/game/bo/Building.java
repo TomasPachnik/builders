@@ -1,9 +1,6 @@
 package sk.builders.game.bo;
 
-import java.awt.Graphics;
 import java.awt.Polygon;
-import java.awt.image.BufferedImage;
-
 import sk.builders.game.enums.Type;
 import sk.builders.utils.Utils;
 
@@ -29,7 +26,11 @@ public class Building {
         this.type = type;
         this.position = position;
         this.polygon = Utils.initPolygon(position);
-        this.worker = new Person(new Position(position.getX() + 1, position.getY() + 1));
+        if (type == Type.WOODCUTTER) {
+            this.worker = new Person(new Position(position.getX() + 1, position.getY() + 1));
+        } else {
+            worker = null;
+        }
     }
 
     public boolean isWorkerHome() {

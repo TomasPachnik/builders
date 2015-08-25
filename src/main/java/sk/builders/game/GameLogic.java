@@ -2,6 +2,8 @@ package sk.builders.game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
@@ -22,11 +24,21 @@ public class GameLogic {
     }
 
     public void addBuilding(Building building) {
-        buildings.add(building);
+        if (building.getWorker() != null) {
+            buildings.add(building);
+        }
     }
 
     public List<Building> getBuildings() {
         return buildings;
+    }
+
+    public void removeByUuid(UUID uuid) {
+        for (int i = 0; i < buildings.size(); i++) {
+            if (buildings.get(i).getWorker().getUuid() == uuid) {
+                buildings.remove(i);
+            }
+        }
     }
 
     public void work() {
@@ -46,11 +58,17 @@ public class GameLogic {
     }
 
     private void findWork(Building building) {
+        Position destination = null;
         switch (building.getType()) {
+        // TODO more proffesions
         case WOODCUTTER:
-            Position destination = findClosestTerrainType(building.getPosition(), Type.WOODCUTTER);
-            building.getWorker().setDestination(new Position(destination.getX() + 1, destination.getY() + 1));
+            destination = findClosestTerrainType(building.getPosition(), Type.WOODCUTTER);
             break;
+        }
+        if (destination != null) {
+            building.getWorker().setDestination(new Position(destination.getX() + 1, destination.getY() + 1));
+        } else {
+            building.getWorker().setDirection(Direction.STAY);
         }
     }
 

@@ -7,15 +7,12 @@ import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
-
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
-import sk.builders.game.bo.Person;
 import sk.builders.game.bo.Position;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.gui.Displayer;
@@ -71,8 +68,8 @@ public class ActionListeners {
                     Building building = new Building(comboBoxListener.getType(), clicked);
                     gameLogic.addBuilding(building);
                     System.out.println(gameApi.build(building).isResult());
-                    displayMap.repaint();
                 } else if (SwingUtilities.isRightMouseButton(e)) {
+                    System.out.println(gameApi.destroy(clicked).isResult());
                     // person.setDestination(new Position(clicked.getX() + 1, clicked.getY() + 1));
                 }
                 displayMap.repaint();

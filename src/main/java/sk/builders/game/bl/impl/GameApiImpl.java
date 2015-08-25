@@ -2,13 +2,13 @@ package sk.builders.game.bl.impl;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 import sk.builders.core.annotations.Autowired;
+import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
@@ -16,14 +16,14 @@ import sk.builders.game.bo.Terrain;
 import sk.builders.game.enums.Type;
 import sk.builders.game.interfaces.GameApi;
 import sk.builders.game.results.EverythingOk;
-import sk.builders.game.results.NoBuilding;
-import sk.builders.game.results.NotEmptyPlace;
 import sk.builders.game.results.Result;
 
 public class GameApiImpl implements GameApi {
 
     @Autowired
     private Map map;
+    @Autowired
+    private GameLogic gameLogic;
 
     @Override
     public Result build(Building building) {
@@ -39,12 +39,12 @@ public class GameApiImpl implements GameApi {
     @Override
     public Result destroy(Position position) {
         Building foundBuilding = map.getBuilding(position);
-        // if (foundBuilding.getType() == Type.BUILDING) {
-        map.setBuilding(new Terrain(position), position);
+        if (foundBuilding.getType() == Type.WOODCUTTER) {
+            gameLogic.removeByUuid(foundBuilding.getWorker().getUuid());
+            map.setBuilding(new Terrain(position), position);
+        }
         return new EverythingOk();
-        // } else {
-        // return new NoBuilding();
-        // }
+
     }
 
     @Override

@@ -10,7 +10,6 @@ import sk.builders.core.annotations.Autowired;
 import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Building;
 import sk.builders.game.bo.Map;
-import sk.builders.game.bo.Person;
 import sk.builders.game.bo.Position;
 import sk.builders.gui.bo.ImageBuffer;
 import sk.builders.utils.Utils;
@@ -119,6 +118,8 @@ public class Displayer extends JComponent {
             }
             break;
         default:
+            g.drawImage(imageBuffer.getPerson1A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                    + Utils.OFFSET_Y, null);
             break;
         }
 

@@ -2,11 +2,13 @@ package sk.builders.game.bo;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import sk.builders.game.enums.Direction;
 import sk.builders.utils.Utils;
 
 public class Person {
+    private UUID uuid;
     private Position position;
     private Position totalPosition;
     private int tact;
@@ -15,8 +17,17 @@ public class Person {
     // actual direction
     private Direction direction;
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
     public Person(Position position) {
         super();
+        this.uuid = UUID.randomUUID();
         this.position = position;
         this.totalPosition = Utils.calculatePosition(position);
         this.totalPosition.setX(totalPosition.getX() + 26);
