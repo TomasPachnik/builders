@@ -37,15 +37,7 @@ public class Displayer extends JComponent {
                 for (Building building : gameLogic.getBuildings()) {
                     // System.out.println(gameLogic.getBuildings().size());
                     if (building.getWorker().getPosition().getX() == i && building.getWorker().getPosition().getY() == j) {
-                        if (building.getWorker().isLeftHand()) {
-                            g.drawImage(imageBuffer.getPerson1A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal()
-                                    .getY()
-                                    + Utils.OFFSET_Y, null);
-                        } else {
-                            g.drawImage(imageBuffer.getPerson1B(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal()
-                                    .getY()
-                                    + Utils.OFFSET_Y, null);
-                        }
+                        drawWorker(g, building);
 
                     }
                 }
@@ -85,6 +77,51 @@ public class Displayer extends JComponent {
         default:
             break;
         }
+    }
+
+    private void drawWorker(Graphics g, Building building) {
+
+        switch (building.getWorker().getDirection()) {
+        case RIGHT_DOWN:
+            if (building.getWorker().isLeftHand()) {
+                g.drawImage(imageBuffer.getPerson1A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            } else {
+                g.drawImage(imageBuffer.getPerson1B(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            }
+            break;
+        case LEFT_DOWN:
+            if (building.getWorker().isLeftHand()) {
+                g.drawImage(imageBuffer.getPerson2A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            } else {
+                g.drawImage(imageBuffer.getPerson2B(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            }
+            break;
+        case RIGHT_UP:
+            if (building.getWorker().isLeftHand()) {
+                g.drawImage(imageBuffer.getPerson3A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            } else {
+                g.drawImage(imageBuffer.getPerson3B(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            }
+            break;
+        case LEFT_UP:
+            if (building.getWorker().isLeftHand()) {
+                g.drawImage(imageBuffer.getPerson4A(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            } else {
+                g.drawImage(imageBuffer.getPerson4B(), building.getWorker().getTotal().getX() + Utils.OFFSET_X, building.getWorker().getTotal().getY()
+                        + Utils.OFFSET_Y, null);
+            }
+            break;
+        default:
+            break;
+        }
+
     }
 
 }
