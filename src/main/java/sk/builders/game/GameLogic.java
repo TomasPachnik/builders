@@ -6,8 +6,10 @@ import java.util.UUID;
 
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.bo.Building;
+import sk.builders.game.bo.Forest;
 import sk.builders.game.bo.Map;
 import sk.builders.game.bo.Position;
+import sk.builders.game.bo.Terrain;
 import sk.builders.game.enums.Direction;
 import sk.builders.game.enums.Type;
 import sk.builders.utils.Utils;

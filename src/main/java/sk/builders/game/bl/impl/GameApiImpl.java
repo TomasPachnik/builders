@@ -10,7 +10,10 @@ import java.io.UnsupportedEncodingException;
 import sk.builders.core.annotations.Autowired;
 import sk.builders.game.GameLogic;
 import sk.builders.game.bo.Building;
+import sk.builders.game.bo.Castle;
+import sk.builders.game.bo.Forest;
 import sk.builders.game.bo.Map;
+import sk.builders.game.bo.Mountain;
 import sk.builders.game.bo.Position;
 import sk.builders.game.bo.Terrain;
 import sk.builders.game.enums.Type;
@@ -63,35 +66,29 @@ public class GameApiImpl implements GameApi {
 
     @Override
     public void load(String name) throws FileNotFoundException, IOException {
-
-        // getClass().getClassLoader().getResourceAsStream(name + ".map")
-
         try (BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(name + ".map")))) {
             String line;
             int count = 0;
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(";");
                 for (int j = 0; j < map.getMap()[1].length; j++) {
-                    Type type;
                     switch (lines[j]) {
                     case "1":
-                        type = Type.WATER;
+                        map.getMap()[count][j] = new Forest(new Position(count, j));
                         break;
                     case "2":
-                        type = Type.FOREST;
+                        map.getMap()[count][j] = new Forest(new Position(count, j));
                         break;
                     case "3":
-                        type = Type.MOUNTAIN;
+                        map.getMap()[count][j] = new Mountain(new Position(count, j));
                         break;
                     case "4":
-                        type = Type.CASTLE;
+                        map.getMap()[count][j] = new Castle(new Position(count, j));
                         break;
                     default:
-                        type = Type.TERRAIN;
+                        map.getMap()[count][j] = new Terrain(new Position(count, j));
                         break;
                     }
-
-                    map.getMap()[count][j] = new Building(type, new Position(count, j));
                 }
                 count++;
             }

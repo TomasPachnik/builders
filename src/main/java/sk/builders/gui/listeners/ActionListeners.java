@@ -70,7 +70,6 @@ public class ActionListeners {
                     System.out.println(gameApi.build(building).isResult());
                 } else if (SwingUtilities.isRightMouseButton(e)) {
                     System.out.println(gameApi.destroy(clicked).isResult());
-                    // person.setDestination(new Position(clicked.getX() + 1, clicked.getY() + 1));
                 }
                 displayMap.repaint();
             }
